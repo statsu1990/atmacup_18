@@ -1,4 +1,6 @@
 import inspect
+import os
+import random
 from concurrent.futures import ThreadPoolExecutor
 from copy import deepcopy
 from pathlib import Path
@@ -31,6 +33,14 @@ def _get_default_args(cls) -> dict:
         for k, v in signature.parameters.items()
         if v.default is not inspect.Parameter.empty
     }
+
+
+def seed_everything(seed_value):
+    random.seed(seed_value)
+    np.random.seed(seed_value)
+    torch.manual_seed(seed_value)
+    torch.cuda.manual_seed(seed_value)
+    os.environ["PYTHONHASHSEED"] = str(seed_value)
 
 
 # ########

@@ -27,3 +27,6 @@ TRAFFIC_LIGHT_CLASS_INDEXES = {
 }
 
 TRAFFIC_LIGHT_BBOX_IMAGE_NAME = "traffic_light_bbox_image.npy"
+
+# optical flow
+OPTICAL_FLOW_IMAGE_NAME = "optical_flow_image.npy"

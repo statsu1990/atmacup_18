@@ -1,4 +1,5 @@
 import json
+import math
 from pathlib import Path
 
 import cv2
@@ -126,7 +127,11 @@ def create_traffic_light_bbox_image(
     for traffic_light in traffic_lights:
         class_ = traffic_light["class"]
         # (左上x座標, 左上y座標, 右下x座標, 右下y座標)
-        bbox = [int(b) for b in traffic_light["bbox"]]
+        bbox = traffic_light["bbox"]
+        bbox[0] = math.floor(bbox[0])
+        bbox[1] = math.floor(bbox[1])
+        bbox[2] = math.ceil(bbox[2])
+        bbox[3] = math.ceil(bbox[3])
 
         if class_ not in constants.TRAFFIC_LIGHT_CLASS_INDEXES:
             raise ValueError(f"Invalid class: {class_}")
